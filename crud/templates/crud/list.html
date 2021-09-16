@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+</head>
+<body>
+<h1>Listing all fields</h1>
+
+<table cellspacing="15px">
+  <tr>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th>Email</th>
+  <th>Details</th>
+  <th>Action</th>
+  <th>Action II</th>
+  </tr>
+  {%for i in data %}
+    <tr>
+
+        <td>{{i.first_name}}</td>
+        <td>{{i.last_name}}</td>
+        <td>{{i.email}}</td>
+        <td><a href="{%url 'details' i.uuid %}">show details </a></td>
+
+        <td>
+            <form action="{%url 'delete' i.uuid%}" method="post">
+                {%csrf_token%}
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+        <td><a href="{%url 'update' i.uuid%}">update</a>
+    </tr>
+  {% endfor %}
+</table>
+
+
+</body>
+</html>
